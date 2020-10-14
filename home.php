@@ -1,35 +1,29 @@
 <?php
 
+
 $fullName_error="";
 $fullName_error="";
 $userName_error="";
 $email_error="";
 $phoneNumber_error="";
 $socialSecurityNumber_error="";
+$login_error="";
 
-require 'user.php';
-//addUser(["userName"=>"ali","password"=>"321654"]);
-if(isExist("uu")){
-    echo "exist";
-}else{
-    echo "no";
-}
-die;
 if(isset($_POST["submitLogRegister"])){
+    require 'user.php';
        
         $validty=true;
 
         
         $fullName                 = filter_var($_POST["fullName"],FILTER_SANITIZE_STRING);
-        $userName                 = filter_var($_POST["userName"],FILTER_SANITIZE_STRING);
         $email                    = filter_var($_POST["email"],FILTER_SANITIZE_EMAIL);
+        $userName                 = filter_var($_POST["userName"],FILTER_SANITIZE_STRING);
         $password                 = filter_var($_POST["password"],FILTER_SANITIZE_SPECIAL_CHARS);
         $phoneNumber              = filter_var($_POST["phoneNumber"],FILTER_SANITIZE_SPECIAL_CHARS);
         $socialSecurityNumber     = filter_var($_POST["socialSecurityNumber"],FILTER_SANITIZE_NUMBER_INT);
   
 
         if(!preg_match("/^([a-zA-Z' ]+)$/",$fullName)){
-            echo $fullName;
             $validty=false;
             $fullName_error="there's an error in your input";
         }
@@ -74,8 +68,18 @@ if(isset($_POST["submitLogRegister"])){
         
     }
 
-    if(isset($_PHP["sumbitLogin"])){
-
+    if(isset($_POST["sumbitLogin"])){
+    require 'user.php';
+      
+        $userName_login                 = filter_var($_POST["userName_login"],FILTER_SANITIZE_STRING);
+        $password_login                 = filter_var($_POST["password_login"],FILTER_SANITIZE_SPECIAL_CHARS);
+      echo $password_login."---".$userName_login;
+        if(isExistUser($userName_login,$password_login)){
+            header("Location: http://".$_SERVER['HTTP_HOST']."/safe.php");
+            exit;
+        }else{
+            $login_error="the username not exist or the password you entered is wrong";
+        }
     }
 ?> 
 
@@ -98,6 +102,7 @@ if(isset($_POST["submitLogRegister"])){
 </style>
     <main>
         <section class="registration">
+            <h1>Register:</h1>
             <form action="" method="post">
                 <div>
                     <label for="fullName">Full Name:</label>
@@ -164,12 +169,21 @@ if(isset($_POST["submitLogRegister"])){
 <div>
     <input type="submit" name="submitLogRegister" value="Register" >
 </div>
-
             </form>
         </section>
         
         <section class="login">
-            <form action=""></form>
+            <form method="post" action="">
+                <h1>Login</h1>
+                <span class="error">
+                    <?php echo $login_error?>
+                </span>
+                <label for="userName_login">Username</label>
+                <input type="text" name="userName_login" id="userName_login" required>
+                <label for="password_login">password</label>
+                <input type="password" name="password_login" id="password_login" required>
+                <input type="submit" name="sumbitLogin" value="Login">
+            </form>
         </section>
     </main>
 
