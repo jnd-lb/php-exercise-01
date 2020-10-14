@@ -90,6 +90,7 @@ if(isset($_POST["submitLogRegister"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./css/part1.css">
     <script src="./script.js"></script>
 </head>
 <body>
@@ -101,8 +102,13 @@ if(isset($_POST["submitLogRegister"])){
     }
 </style>
     <main>
-        <section class="registration">
+     <div>
+ 
+     <section class="registration">
+            
+            <div class="header">
             <h1>Register:</h1>
+            </div>
             <form action="" method="post">
                 <div>
                     <label for="fullName">Full Name:</label>
@@ -158,7 +164,7 @@ if(isset($_POST["submitLogRegister"])){
 </div>
 
 <div>
-    <label for="socialSecurityNumber">Social Security Number:</label>
+    <label for="socialSecurityNumber">SSN:</label>
     <input type="number" id="socialSecurityNumber" name="socialSecurityNumber" required>
     <span id="socialSecurityNumber_error" class="error">
     <?php echo $socialSecurityNumber_error ?>
@@ -173,18 +179,25 @@ if(isset($_POST["submitLogRegister"])){
         </section>
         
         <section class="login">
-            <form method="post" action="">
+            <div class="header">
                 <h1>Login</h1>
+            </div>
+            <form method="post" action="">
                 <span class="error">
                     <?php echo $login_error?>
                 </span>
-                <label for="userName_login">Username</label>
-                <input type="text" name="userName_login" id="userName_login" required>
-                <label for="password_login">password</label>
-                <input type="password" name="password_login" id="password_login" required>
+                <div>
+                    <label for="userName_login">Username</label>
+                    <input type="text" name="userName_login" id="userName_login" required>
+                </div>
+                <div>
+                    <label for="password_login">password</label>
+                    <input type="password" name="password_login" id="password_login" required>
+                </div>
                 <input type="submit" name="sumbitLogin" value="Login">
             </form>
         </section>
+     </div>  
     </main>
 
 </body>
