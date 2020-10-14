@@ -1,0 +1,98 @@
+body,html{
+    background-color: #3f4c4f;
+margin:0;
+}
+*{
+    box-sizing: border-box;
+}
+header{
+    padding: 15px;
+    color:#d4d4d4;
+    background-color: #171c1d;;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    
+}
+
+
+
+header h1{
+    font-weight: 900;
+    float: left;
+}
+
+header h2{
+    float: right;
+}
+
+form {
+    padding: 50px;
+    width: 55%;
+    margin: 0 auto;
+    background-color: silver;
+}
+
+form label{
+    font-size: 15px;
+    font-weight: 900;
+}
+
+form div{
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+form div input[type="number"]
+{
+    margin-left: 20px;
+    flex-grow: 1;
+    counter-reset: none;
+    height: 40px;
+    padding: 8px;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;       
+}
+
+form .error{
+    clear: both;
+    width: 100%;
+    display: block;
+    color: red;
+    margin:0px 14px;
+}
+
+table{
+    margin: 50px auto;
+    width: 90%;
+    border-collapse: collapse;
+    background-color: rgb(233, 233, 233);
+}
+
+
+table td,th{
+    padding: 14px;
+    text-align: center;
+}
+
+table td:nth-child(1){
+    font-weight: 900;
+    width: 30%;
+}
+
+table tr td:nth-child(1){
+    background-color: silver;
+}
+
+tr:nth-child(1){
+    background-color: silver;
+}
+form input[type="submit"]{
+    width: 100%;
+}
+
+main{
+   
+}

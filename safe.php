@@ -102,6 +102,7 @@ $salary_error="";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Tax Calculator </title>
+    <link rel="stylesheet" href="css/calculator.css">
 </head>
 <body>
     <header>
@@ -111,17 +112,24 @@ $salary_error="";
     <main>
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 
-            <label for="salary">Enter Your Salary</label>
-            <input type="number" name="salary" id="salary" value="<?php echo $salary; ?>">
+            <div>
+                <label for="salary">Enter Your Salary</label>
+                <input type="number" name="salary" id="salary" value="<?php echo $salary; ?>">
+            </div>
             <?php if($salary_error != "") echo "<span class='error'> $salary_error  </span>" ?>
 
-            <label for="salaryType">Your Salary is Yearly or monthly:</label>
-            <input type="radio" name="salaryType" id="salaryType" value="yearly" <?php if($yearly) echo "checked"; ?> >
-            <input type="radio" name="salaryType" id="salaryType" value="monthly" <?php if($monthly) echo "checked"; ?>>
+            <div>
+                <label for="monthly">monthly:</label>
+                <input type="radio" name="salaryType" id="monthly" value="yearly" <?php if($yearly) echo "checked"; ?> >
+                <label for="yearly">monthly:</label>
+                <input type="radio" name="salaryType" id="yearly" value="monthly" <?php if($monthly) echo "checked"; ?>>
+            </div>
             <?php if($salaryType_error != "") echo "<span class='error'> $salaryType_error  </span>" ?>
 
-            <label for="taxFree">Enter Your Salary</label>
-            <input type="number" name="taxFree" id="taxFree" value="<?php echo $taxFree; ?>" >
+            <div>
+                <label for="taxFree">Enter Your Salary</label>
+                <input type="number" name="taxFree" id="taxFree" value="<?php echo $taxFree; ?>" >
+            </div>
             <?php if($taxFree_error != "") echo "<span class='error'> $taxFree_error  </span>" ?>
 
             <input type="submit" name="submit" value="Calculate">
