@@ -14,20 +14,32 @@ $yearlySecurityFee ="";
 $montlySalaryAfterTax ="";
 $yearlySalaryAfterTax ="";
 
+$taxFree_error ="";
+$salaryType_error="";
+$salary_error="";
+
+
     if(isset($_POST["submit"])){
         $validity= true;
 
-
         //Sanitze and validate  salary
         $salary = $_POST["salary"];
-        $salary = filter_var($sal, FILTER_SANITIZE_NUMBER_FLOAT);
+        $taxFree = $_POST["taxFree"];
+        
+        $salary = filter_var($salary, FILTER_SANITIZE_NUMBER_INT);
+        $taxFree = filter_var($taxFree, FILTER_SANITIZE_NUMBER_INT);
+        
 
-		if(!filter_var($salary, FILTER_VALIDATE_FLOAT)){
+
+		if(!filter_var($salary, FILTER_VALIDATE_INT) || $salary < 0 ){
+            
             $salary_error = "there's something wrong with your input input";
             $validity = false;
         }
         
-        if(!filter_var($taxFree, FILTER_VALIDATE_FLOAT)){
+        if(!filter_var($taxFree, FILTER_VALIDATE_INT) || $taxFree<-1){
+     
+
             $taxFree_error = "there's something wrong with your input input";
             $validity = false;
         }
@@ -35,7 +47,7 @@ $yearlySalaryAfterTax ="";
         if(isset($_POST["salaryType"])){
 
             // check if the user mess with the radio values
-            if($_POST["salaryType"] != "yearly" || $_POST["salaryType"] != "monthly") {
+            if($_POST["salaryType"] !== "yearly" && $_POST["salaryType"] !== "monthly") {
                 $salaryType_error = "there's something wrong with your input input";
                 $validity = false;
             }else{
@@ -49,27 +61,24 @@ $yearlySalaryAfterTax ="";
 
 
         if($validity){
-            
             if($monthly){
+                
+                // Times 12 to convert it to yearly
+                $salary*=12;
+                $taxFree*=12;
+
                 $totalMonthlySalary = $salary;
-
-                //salary < 10,000$: 0% tax
-                //10,000$ < salary < 25,000$: 11% Tax
-
-              // // 25,000$ < salary < 50,000$: 30% tax
-              ///  salary > 50,000$: 45% tax
-                switch($salary*12){
+                switch($salary){
                     case $salary<10000: $monthlyTax=0;break;
-                    case ($salary>10000 && $salary<25000): $monthlyTax=$salary*12*11/100;break;
-                    case ($salary>25000 && $salary<50000): $monthlyTax=$salary*12*30/100;break;
-                    case ($salary>50000): $monthlyTax=$salary*12*45/100;break;
+                    case ($salary>10000 && $salary<25000): $monthlyTax=$salary*11/100;break;
+                    case ($salary>25000 && $salary<50000): $monthlyTax=$salary*30/100;break;
+                    case ($salary>50000): $monthlyTax=$salary*45/100;break;
                 }
                 
-                
-                $montlySecurityFee =($salary*12>10000)? ($salary*12*4/100) :0;
-                $montlySalaryAfterTax =($salary*12)-$monthlyTax-$montlySecurityFee+$taxFree*12;
+                $montlySecurityFee =($salary>10000)? ($salary*4/100) :0;
+                $montlySalaryAfterTax =$salary-$monthlyTax-$montlySecurityFee+$taxFree;
             }else{
-
+                $totalYearlySalary = $salary;
                 switch($salary){
                     case $salary<10000: $yearlyTax=0;break;
                     case ($salary>10000 && $salary<25000): $yearlyTax=$salary*11/100;break;
@@ -79,7 +88,7 @@ $yearlySalaryAfterTax ="";
                 
                 
                 $yearlySecurityFee =($salary>10000)? ($salary*4/100) :0;
-                $montlySalaryAfterTax =($salary)-$yearlyTax-$yearlySecurityFee+$taxFree;
+                $yearlySalaryAfterTax =$salary-$yearlyTax-$yearlySecurityFee+$taxFree;
             }
         }
 
@@ -100,17 +109,20 @@ $yearlySalaryAfterTax ="";
         <h2> Hello <?php echo " ".$userName ?> </h2>
     </header>  
     <main>
-        <form action="<?php $_SERVER["self"] ?>" method="post" >
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
 
             <label for="salary">Enter Your Salary</label>
             <input type="number" name="salary" id="salary" value="<?php echo $salary; ?>">
+            <?php if($salary_error != "") echo "<span class='error'> $salary_error  </span>" ?>
 
             <label for="salaryType">Your Salary is Yearly or monthly:</label>
             <input type="radio" name="salaryType" id="salaryType" value="yearly" <?php if($yearly) echo "checked"; ?> >
             <input type="radio" name="salaryType" id="salaryType" value="monthly" <?php if($monthly) echo "checked"; ?>>
+            <?php if($salaryType_error != "") echo "<span class='error'> $salaryType_error  </span>" ?>
 
             <label for="taxFree">Enter Your Salary</label>
             <input type="number" name="taxFree" id="taxFree" value="<?php echo $taxFree; ?>" >
+            <?php if($taxFree_error != "") echo "<span class='error'> $taxFree_error  </span>" ?>
 
             <input type="submit" name="submit" value="Calculate">
 
