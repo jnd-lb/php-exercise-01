@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
 html,body{
     margin: 0;
     padding: 0;
@@ -100,6 +101,7 @@ transform: translateX(-50%);
 }
 
 .login h1{
+    font-family: 'Kaushan Script', cursive;
     font-size: 36px;
     font-weight: bold;
     position: absolute;
