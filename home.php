@@ -90,8 +90,11 @@ if(isset($_POST["submitLogRegister"])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/part1.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="./script.js"></script>
+    <link rel="stylesheet" href="./css/part1.css">
 </head>
 <body>
 
@@ -107,92 +110,91 @@ if(isset($_POST["submitLogRegister"])){
      <section class="registration">
             
             <div class="header">
-            <h1>Register:</h1>
+            <h1>Register</h1>
             </div>
             <form action="" method="post">
                 <div>
-                    <label for="fullName">Full Name:</label>
-                    <input  type="text" id="fullName" name="fullName" required>
-                    <span id="fullName_error" class="error">
-                        <?php echo $fullName_error ?>
-                    </span>
-                </div>
-                <div>
-                    <label for="userName">Username:</label>
-                    <input  type="text" id="userName" name="userName" required>
-                    <span id="userName_error" class="error">
-                    <?php echo $userName_error ?>
-                    </span>
-                </div>
-
-                <div>
-                    <label for="email">Email:</label>
-                    <input  type="email" id="email" name="email" required>
-                    <span id="email_error" class="error">
-                    <?php echo $email_error ?>
-                    </span>
-                </div>
-
-
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                    <span id="password_error" class="error">
-                    <?php echo $password_error ?>
-                
-                    </span>
-                </div>
-
-                <div>
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                    <span id="confirmPassword_error" class="error"></span>
-</div>
-
-<div>
-    <label for="phoneNumber">Phone:</label>
-    <input type="tel" id="phoneNumber" name="phoneNumber" required>
-    <span id="phoneNumber_error" class="error">
-    <?php echo $phoneNumber_error ?>
-    </span>
-</div>
-
-<div>
-    <label for="birthDate">Date Of Birth:</label>
-    <input type="date" id="birthDate" name="birthDate" required>
-    <span id="birthDate_error" class="error"></span>
-</div>
-
-<div>
-    <label for="socialSecurityNumber">SSN:</label>
-    <input type="number" id="socialSecurityNumber" name="socialSecurityNumber" required>
-    <span id="socialSecurityNumber_error" class="error">
-    <?php echo $socialSecurityNumber_error ?>
-
-    </span>
-</div>
-
-<div>
-    <input type="submit" name="submitLogRegister" value="Register" >
-</div>
-            </form>
-        </section>
-        
-        <section class="login">
-            <div class="header">
-                <h1>Login</h1>
+                <span class="glyphicon glyphicon-user"></span>
+                <input  type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                <span id="fullName_error" class="error">
+                    <?php echo $fullName_error ?>
+                </span>
             </div>
+            <div>
+                <span class="glyphicon glyphicon-user"></span>
+                <input  type="text" id="userName" name="userName" placeholder="Username:"required>
+                <span id="userName_error" class="error">
+                    <?php echo $userName_error ?>
+                </span>
+            </div>
+            
+            <div>
+                <span class="glyphicon glyphicon-envelope"></span>
+                <input  type="email" id="email" name="email" placeholder="Email:" required>
+                <span id="email_error" class="error">
+                    <?php echo $email_error ?>
+                </span>
+            </div>
+            
+            
+            <div>
+                <span class="glyphicon glyphicon-asterisk"></span>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span id="password_error" class="error">
+                    <?php echo $password_error ?>
+                    
+                </span>
+            </div>
+            
+            <div>
+                <span class="glyphicon glyphicon-asterisk"></span>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <span id="confirmPassword_error" class="error"></span>
+            </div>
+            
+            <div>
+                <span class="glyphicon glyphicon-phone-alt"></span>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
+                <span id="phoneNumber_error" class="error">
+                    <?php echo $phoneNumber_error ?>
+                </span>
+            </div>
+            
+            <div>
+                <span class="glyphicon glyphicon-time"></span>
+                <input type="date" id="birthDate" name="birthDate" placeholder="Date Of Birth" required>
+                <span id="birthDate_error" class="error"></span>
+            </div>
+            
+            <div>
+                <span class="glyphicon glyphicon-credit-card"></span>
+                
+                <input type="number" id="socialSecurityNumber" placehoder="Social Security Number" name="socialSecurityNumber" required>
+                <span id="socialSecurityNumber_error" class="error">
+                    <?php echo $socialSecurityNumber_error ?>
+                    
+                </span>
+            </div>
+            
+            <div>
+                
+                <input type="submit" name="submitLogRegister" value="Register" >
+            </div>
+        </form>
+    </section>
+    
+    <section class="login">
+    
             <form method="post" action="">
                 <span class="error">
                     <?php echo $login_error?>
                 </span>
+                <h1>Login</h1>
                 <div>
-                    <label for="userName_login">Username</label>
-                    <input type="text" name="userName_login" id="userName_login" required>
+                    <input type="text" name="userName_login" id="userName_login" placeholder="Username" required>
                 </div>
                 <div>
-                    <label for="password_login">password</label>
-                    <input type="password" name="password_login" id="password_login" required>
+                    <input type="password" name="password_login" id="password_login" placeholder="password" required>
                 </div>
                 <input type="submit" name="sumbitLogin" value="Login">
             </form>

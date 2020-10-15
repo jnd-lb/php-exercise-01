@@ -24,29 +24,39 @@ main{
 }
 
 main > div{
+    height: 90%;
+    width: 65%;
     display: flex;
     background-color: rgba(255, 255, 255, 0.705) ;
     -webkit-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.63);
     -moz-box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.63);
     box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.63);
-    
-}
-form{
-    padding: 50px;
-}
-section input{
-    background-color: white;
-    width: 70%;
-    float: right;
-    border-width: 0;
-    padding: 8px;
-}
-section label{
-    width: 30%;
+  overflow: hidden;
+  transition: all 1s ease;
 }
 
+
+
+main div .registration{
+    flex-grow: 1;
+}
+form{
+    padding: 25px 50px;
+}
+section input{
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    float: right;
+    border-width: 0;
+    padding: 9px;
+    padding-left: 35px;
+}
+
+
 section div{
-    margin: 4px 0;
+    position: relative;
+    margin: 6px 0;
     display: flex;
     align-items: center;
 }
@@ -67,6 +77,61 @@ main h1{
     padding: 30px 50px;
 }
 
-.login .header{
-    background-color: #EEFF6E;
+.login {
+    position: relative;
+    background-color: #ffc31e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login::after{
+    content: "";
+
+    width: 70px;
+    height: 70px;
+    position: absolute;
+left: 0;
+transform: translateX(-50%);
+    background-color: #ffc31e;
+
+    border-radius: 50%;
+}
+
+.login h1{
+    font-size: 36px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -50px;
+}
+
+
+
+.glyphicon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left:10px
+}
+
+
+section input[type="submit"]{
+    padding: 10px;
+    font-size: larger;
+}
+
+.registration  input[type="submit"]{
+    background-color: #530FAB;
+    font-weight: bolder;
+    font-size: 25PX;
+    color: white;
+}
+
+.registration h1{
+    font-weight: bolder;
+    font-size: 36PX;
+    color: white;
 }
